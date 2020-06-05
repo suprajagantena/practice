@@ -1,1 +1,19 @@
-
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Amazon Pinpoint'
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+      - Label:
+          default: Details to create the Project
+        Parameters:
+          - Project name
+        - Label:
+        default: Enter details to create a segment 
+      Parameters:
+        -Name
+        - Label:
+        default: 
+      Parameters:
+        - 
+ 
+        
