@@ -6,14 +6,125 @@ Metadata:
       - Label:
           default: Details to create the Project
         Parameters:
-          - Project name
+          - Project name:
         - Label:
-        default: Enter details to create a segment 
       Parameters:
-        -Name
-        - Label:
-        default: 
+        Segment details:
+          Description: "Enter valid name to create a segment"
+          -Name:
+          Type: String
+          Segment group 1:
+          default: any
+          Type: List
+          Allowed values: 
+          -any
+          -all
+          All segments:
+          Description: "choose an imported segment as a base segment"
+          Type: List
+          Add a filter:
+          Type: List
+          Allowed values:
+          -Filter by channel
+          -Filter by endpoint
+          -Filter by user
+           - Label:
       Parameters:
+        Segment details:
+          Description: "Enter valid name to create a campaign"
+          -Campaign name:
+             Type: String
+    -Campaign type:
+        Description: "choose a campaign type to send messages to your segments"
+           Type: String 
+           default: Standard campaign
+           Allowed values:
+                -Standard campaign
+                -A/B test campaign
+    -Channel:
+        Description: "Choose a channel for this campaign"
+           Type: String 
+           Allowed values:
+              -Email
+              -SMS
+              -Custom
+      -Create your message:
+        Description: "Choose an existing or SMS"
+           Type: String 
+           Allowed values:
+              -Choose an existing SMS template
+              -Create a new SMS message
+      SMS template:
+          Description: "choose an existing template"
+          Type: String 
+       SMS settings:
+          message type: 
+          Type: String
+          Allowed values:
+             -Transactional
+             -Promotional
+       Campaign setup:
+          Description:"Choose when to send the campaign"
+          Type: String 
+          default: At a specific time
+       Choose when the campaign should be sent:
+          Type: String 
+          Allowed values:
+             -Immediately
+             -Once
+             -Hourly
+             -Daily
+             -Weekly
+             -Monthly
+       Time zone:
+          Type: List
+          Allowed values: UTC
+          UTC+01
+          UTC+02
+          UTC+03
+          UTC+03:30
+          UTC+04
+          UTC+04:30
+          UTC+05
+          UTC+05:30
+          UTC+05:45
+          UTC+06
+          UTC+06:30
+          UTC+07
+          UTC+08
+          UTC+09
+          UTC+09:30
+          UTC+10
+          UTC+10:30
+          UTC+11
+          UTC+12
+          UTC+13
+          UTC-02
+          UTC-03
+          UTC-04
+          UTC-05
+          UTC-06
+          UTC-07
+          UTC-08
+          UTC-09
+          UTC-10 
+          UTC-11
+       Use recipient's local time
+       
+
+           
+           
+          
+              
+              
+              
+        
+              
+    
+
+
+                          
+          
         - 
  
         
