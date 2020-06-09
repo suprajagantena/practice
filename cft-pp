@@ -114,7 +114,27 @@ Metadata:
 
            
            
-          
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Amazon Pinpoint'
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+    - Label:
+        default: Details to create the Project
+      Parameters:
+        - Name
+Parameters:
+  Name: 
+    Type: String
+    Default: 'pinpoint-app'  
+    Description: Name of the project.
+
+Resources:
+  App:
+    Type: AWS::Pinpoint::App
+    Properties: 
+      Name: ! Ref Name
+
               
               
               
