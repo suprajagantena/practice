@@ -134,8 +134,16 @@ Resources:
     Properties: 
       Name: !Ref Project
 
-              
-              
+AppSegment:
+  Type: AWS::Pinpoint::Segment
+  Properties: 
+    ApplicationId: !Ref App
+    Dimensions: 
+      SegmentDimensions
+    Name: String
+    SegmentGroups: 
+      SegmentGroups
+    Tags: Json
               
         
               
