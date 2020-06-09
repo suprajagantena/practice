@@ -113,7 +113,6 @@ Metadata:
        
 
            
-           
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Amazon Pinpoint'
 Metadata:
@@ -124,7 +123,7 @@ Metadata:
       Parameters:
         - Name
 Parameters:
-  Name: 
+  Project: 
     Type: String
     Default: 'pinpoint-app'  
     Description: Name of the project.
@@ -133,7 +132,7 @@ Resources:
   App:
     Type: AWS::Pinpoint::App
     Properties: 
-      Name: ! Ref Name
+      Name: !Ref Project
 
               
               
