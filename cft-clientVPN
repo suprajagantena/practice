@@ -1,0 +1,102 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This template creates client VPN Endpoint for VPC.
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+      - Label:
+          default: Create Client VPN Endpoint
+          Parameters:
+            - Name Tag
+            - Description
+            - Client IPv4 CIDR
+      - Label:
+          default: Authentication Information
+          Parameters:
+            - Server certificate ARN
+            - Authentication Options
+      - Label:
+          default: Connection Logging
+          Parameters:
+            - Do you want to log the details on client connections
+      - Label:
+          default: Other Optional Parameters
+          Parameters:
+            - DNS Server 1 IP address
+            - DNS Server 2 IP address
+            - Transport Protocol
+            - Enable split-tunnel
+            - VPC ID
+            - VPN port
+Parameters:
+  AuthenticationOptions:
+    Description: The type of client authentication to be used.
+    Type: String
+  ClientCidrBlock:
+    Description: The IP address range, in CIDR notation, from which client IP addresses are allocated (Required)
+    Type: String
+  Description:
+    Description: A brief description of the Client VPN endpoint
+    Type: String
+  CloudwatchLogGroup:
+    Description: The name of the CloudWatch Logs log group to use
+    Type: String
+  CloudwatchLogStream:
+    Description: The name of the CloudWatch Logs log stream to use
+    Type: String
+  DnsServers:
+    Description: The IP address of the DNS server to use (Optional)
+    Type: String
+  DirectoryId:
+    Description: The ID of the Active Directory to be used for authentication
+    Type: String
+  SplitTunnel:
+    Description: Enable split-tunnel to limit the traffic that is sent via the VPN tunnel (Optional) 
+    Type: String
+  SAMLProviderArn:
+    Description: The Amazon Resource Name (ARN) of the IAM SAML identity provider
+    Type: String
+  VpcId:
+    Description: VPC Id that the endpoint will be associated with (Optional)
+    Type: String
+  VpnPort:
+    Description: VPN port that the endpoint will use (Optional)
+    Type: String
+  ServerCertificateArn:
+    Description: The ARN of the server certificate. The server certificate must be provisioned in AWS Certificate Manager (ACM) (Required)
+    Type: String
+  ConnectionLogOptions:
+    Description: Use Connection logs to have forensics on when clients attempted to connect (Required)
+    Type: String
+    AllowedValues:
+      - yes
+      - no
+  TransportProtocol:
+    Description: Transport protocol used by the TLS sessions (Optional)
+    Type: String
+    AllowedValues:
+      - TCP
+      - UDP
+Resources:
+ myClientVpnEndpoint:
+   Type: AWS::EC2::ClientVpnEndpoint
+   Properties: 
+     AuthenticationOptions:
+     - Type: "certificate-authentication"
+       MutualAuthentication:
+         ClientRootCertificateChainArn: String
+     ClientCidrBlock: !Ref ClientCidrBlock
+     ConnectionLogOptions: !Ref ConnectionLogOptions
+     Description: !Ref Description
+     DnsServers: 
+       - !Ref DnsServers
+     ServerCertificateArn: !Ref ServerCertificateArn
+     TagSpecifications:
+       - ResourceType: "client-vpn-endpoint"
+         Tags:
+         - Key: "Name"
+           Value: "VPN Endpoint"
+     TransportProtocol: !Ref TransportProtocol
+Outputs:
+  Endpoint:
+    Description: myClientVpnEndpoint
+    Value: !Ref myClientVpnEndpoint
